@@ -1,0 +1,103 @@
+// 主题名称
+$theme-name: 'youfool';
+// 主题背景颜色
+$theme-bg-color: #fff;
+// 主题背景图片遮罩
+$theme-bg-mask: transparent;
+
+$theme-button-primary-color: $color-linear-primary;
+
+// 消息提示
+$theme-message-info-background-color: $color-bg;
+$theme-message-info-text-color: $color-text-normal;
+$theme-message-info-border-color: $color-border-1;
+
+// container组件
+$theme-container-background-color: rgba(#FFF, .9);
+$theme-container-header-footer-background-color: #FFF;
+$theme-container-border-inner: 1px solid $color-border-1;
+
+$theme-multiple-page-control-color: #FFF;
+$theme-multiple-page-control-color-active: $color-text-normal;
+$theme-multiple-page-control-nav-prev-color: #FFF;
+$theme-multiple-page-control-nav-next-color: #FFF;
+$theme-multiple-page-control-border-color: #114450;
+$theme-multiple-page-control-border-color-active: #FFF;
+$theme-multiple-page-control-background-color: rgba(#114450, .5);
+$theme-multiple-page-control-background-color-active: #FFF;
+
+// 顶栏和侧边栏中展开的菜单 hover 状态下
+$theme-menu-item-color-hover: #293849;
+$theme-menu-item-background-color-hover: #ecf5ff;
+
+// 收起按钮的颜色
+$theme-toggle-btn-color: #000;
+$theme-toggle-btn-background-color: #fff;
+// 收起按钮的颜色在 hover 时
+$theme-toggle-btn-color-hover: #000;
+$theme-toggle-btn-background-color-hover: #fff;
+
+
+// 顶栏上的文字颜色
+$theme-header-item-color: #000;
+$theme-header-item-background-color: transparent;
+// 顶栏上的项目在 hover 时
+$theme-header-item-color-hover: #000;
+$theme-header-item-background-color-hover: rgba(#000, .2);
+// 顶栏上的项目在 focus 时
+$theme-header-item-color-focus: #000;
+$theme-header-item-background-color-focus: rgba(#000, .2);
+// 顶栏上的项目在 active 时
+$theme-header-item-color-active: #000;
+$theme-header-item-background-color-active: rgba(#000, .3);
+
+// 侧边栏的背景
+$theme-aside-background: url('~@/assets/style/theme/youfool/image/asideBg.png') bottom/cover;
+// 侧边栏上的文字颜色
+$theme-aside-item-color: rgba(255,255,255,0.5);
+$theme-aside-item-background-color: transparent;
+// 侧边栏上的项目在 hover 时
+$theme-aside-item-color-hover: #FFF;
+$theme-aside-item-background-color-hover:$color-aside-active-linear;
+// 侧边栏上的项目在 focus 时
+$theme-aside-item-color-focus: #FFF;
+$theme-aside-item-background-color-focus: $color-aside-active-linear;
+// 侧边栏上的项目在 active 时
+$theme-aside-item-color-active: #FFF;
+$theme-aside-item-background-color-active:$color-aside-active-linear;
+
+// 侧边栏菜单为空的时候显示的元素
+$theme-aside-menu-empty-icon-color: #FFF;
+$theme-aside-menu-empty-text-color: #FFF;
+$theme-aside-menu-empty-background-color: rgba(#FFF, .2);
+$theme-aside-menu-empty-icon-color-hover: #FFF;
+$theme-aside-menu-empty-text-color-hover: #FFF;
+$theme-aside-menu-empty-background-color-hover: rgba(#FFF, .3);
+
+// dialog
+$theme-dialog-box-shadow:0px 4px 8px rgba(48,49,51,0.3);
+$theme-dialog-border-radius:6px;
+$theme-dialog-header-background-color:$theme-button-primary-color;
+$theme-dialog-header-border-radius:6px 6px 0 0;
+$theme-dialog-header-box-shadow:4px 0px 6px rgba(0,0,0,0.16);
+
+
+
+
+// button
+$theme-button-primary-background-color:$theme-button-primary-color;
+$theme-button-padding:10px 28px;
+$theme-button-font-size:18px;
+$theme-button-border-radius:6px;
+
+$theme-button-medium-padding:9px 24px;
+$theme-button-medium-font-size:16px;
+$theme-button-medium-border-radius:5px;
+
+$theme-button-small-padding:8px 20px;
+$theme-button-small-font-size:14px;
+$theme-button-small-border-radius:4px;
+
+$theme-button-mini-padding:7px 16px;
+$theme-button-mini-font-size:12px;
+$theme-button-mini-border-radius:3px;

@@ -1,0 +1,25 @@
+@import './setting.scss';
+@import '../theme.scss';
+
+::-webkit-scrollbar {
+  /* px-to-viewport-ignore-next */
+  width: .5rem;
+  /* px-to-viewport-ignore-next */
+  height: .5rem;
+  background: hsla(0, 0%, 100%, 0.6);
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #6778A7;
+  transition: all .2s;
+  /* px-to-viewport-ignore-next */
+  border-radius: 4px;
+
+  &:hover {
+    background-color: #6778A7;
+  }
+}

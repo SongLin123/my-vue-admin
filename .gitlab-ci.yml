@@ -1,0 +1,30 @@
+image: node:12
+before_script:   
+  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'  
+  - eval $(ssh-agent -s) 
+  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+  - mkdir -p ~/.ssh  
+  - chmod 700 ~/.ssh  
+  - ssh-keyscan 10.151.5.96 >> ~/.ssh/known_hosts  
+  - chmod 644 ~/.ssh/known_hosts  
+  - '[[ -f /.dockerinit ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+stages: 
+  - build 
+cache:
+  paths:
+    - node_modules/   
+# 定义 job 
+build:  
+ stage: build  
+ only:
+ - test   
+ script:    
+  - node -v    
+  - npm install -g cnpm --registry=https://registry.npm.taobao.org    
+  - cnpm -v    
+  - cnpm install   
+  - npm run build   
+  - ls     
+  - scp -r senseidc root@10.151.5.96:/data/ceph/executive/html/
+ tags:
+  - vue

@@ -1,0 +1,568 @@
+// 每个主题特有的设置
+.theme-#{$theme-name} {
+
+  .el-message-box{
+    // `Px` or `PX` is ignored by `postcss-pxtorem` but still accepted by browsers
+    width:400Px;
+  }
+  .el-dialog,.el-message-box {
+    border: none;
+    box-shadow:$theme-dialog-box-shadow;
+    border-radius:$theme-dialog-border-radius;
+    & .el-dialog__header,.el-message-box__header {
+     padding: 16px;
+     background: $theme-dialog-header-background-color;
+     box-shadow:$theme-dialog-header-box-shadow;
+      border-radius:$theme-dialog-header-border-radius;
+
+      & .el-dialog__title,.el-message-box__title{
+        font-size: $theme-dialog-title-font-size;
+        font-weight: $theme-dialog-title-font-weight;
+        line-height: $theme-dialog-title-line-height;
+        color: $theme-dialog-color;
+      }
+
+      & .el-dialog__close,.el-message-box__close{
+        color: $theme-dialog-color;
+        font-weight: $theme-dialog-title-font-weight;
+      }
+     
+    }
+    & .el-dialog__body{
+      padding: 24px 32px 0 32px;
+    }
+     & .el-dialog__footer,.el-message-box__btns{
+        padding-top: 20px;
+        padding-bottom: 20px;
+        display: flex;
+        justify-content: center;
+        button{
+          width: 112px;
+        }
+        button.el-button--primary{
+        background:$theme-dialog-header-background-color;
+      }
+      }
+    .el-message-box__content{
+      padding: 40px 0 0 0px;
+      .el-message-box__container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .el-message-box__status{
+          position: static;
+          top: 0;
+          transform: initial;
+          margin-right: 10px;
+        }
+        .el-message-box__message{
+          padding: 0;
+          text-align: center;
+        }
+      }
+    }
+  }
+  .el-message {
+    &.el-message--info {
+      background-color: $theme-message-info-background-color;
+      color: $theme-message-info-text-color;
+      border-color: $theme-message-info-border-color;
+    }
+  }
+
+  .el-card {
+    &.d2-card {
+      border: $theme-container-border-outer;
+      .el-card__header {
+        border-bottom: $theme-container-border-outer;
+      }
+    }
+  }
+
+  // 背景图片和遮罩
+  .d2-layout-header-aside-group {
+    background-color: $theme-bg-color;
+    .d2-layout-header-aside-mask {
+      background: $theme-bg-mask;
+    }
+  }
+
+  // 菜单项目
+  @mixin theme-menu-hover-style {
+    color: $theme-menu-item-color-hover;
+    i.fa {
+      color: $theme-menu-item-color-hover;
+    }
+    background: $theme-menu-item-background-color-hover;
+  }
+  %el-menu-icon {
+    i {
+      display: inline-block;
+      width: 14px;
+      text-align: center;
+      margin-right: 5px;
+    }
+    svg {
+      margin: 0px;
+      height: 14px;
+      width: 14px;
+      margin-right: 5px;
+    }
+  }
+  .el-submenu__title {
+    @extend %unable-select;
+    @extend %el-menu-icon;
+  }
+  .el-menu-item {
+    @extend %unable-select;
+    @extend %el-menu-icon;
+  }
+  .el-submenu__title:hover {
+    @include theme-menu-hover-style;
+  }
+  .el-menu-item:hover {
+    @include theme-menu-hover-style;
+  }
+  .el-menu--horizontal .el-menu-item:not(.is-disabled):hover {
+    @include theme-menu-hover-style;
+  }
+  .el-menu--horizontal .el-menu .el-submenu__title:hover {
+    @include theme-menu-hover-style;
+  }
+  
+  // 顶栏
+  .d2-theme-header {
+    // 顶栏菜单空间不足时显示的滚动控件
+    .d2-theme-header-menu {
+      .d2-theme-header-menu__prev, .d2-theme-header-menu__next {
+        color: $theme-header-item-color;
+        background: $theme-header-item-background-color;
+        &:hover {
+          color: $theme-header-item-color-hover;
+          background: $theme-header-item-background-color-hover;
+        }
+      }
+    }
+
+    // 顶栏菜单
+    .el-menu {
+      .el-menu-item {
+        transition: border-top-color 0s;
+        color: $theme-header-item-color;
+        background: $theme-header-item-background-color;
+        i.fa { color: inherit; }
+        &:hover {
+          color: $theme-header-item-color-hover;
+          background: $theme-header-item-background-color-hover;
+          i.fa { color: inherit; }
+        }
+        &:focus {
+          color: $theme-header-item-color-focus;
+          background: $theme-header-item-background-color-focus;
+          i.fa { color: inherit; }
+        }
+        &.is-active {
+          color: $theme-header-item-color-active;
+          background: $theme-header-item-background-color-active;
+          i.fa { color: inherit; }
+        }
+      }
+      .el-submenu {
+        &.is-active {
+          .el-submenu__title {
+            color: $theme-header-item-color-active;
+            background: $theme-header-item-background-color-active;
+            i.fa { color: inherit; }
+          }
+        }
+        .el-submenu__title {
+          transition: border-top-color 0s;
+          color: $theme-header-item-color;
+          background: $theme-header-item-background-color;
+          i.fa { color: inherit; }
+          .el-submenu__icon-arrow {
+            color: $theme-header-item-color;
+          }
+          &:hover {
+            color: $theme-header-item-color-hover;
+            background: $theme-header-item-background-color-hover;
+            i.fa { color: inherit; }
+            .el-submenu__icon-arrow {
+              color: $theme-header-item-color-hover;
+            }
+          }
+          &:focus {
+            color: $theme-header-item-color-focus;
+            background: $theme-header-item-background-color-focus;
+            i.fa { color: inherit; }
+            .el-submenu__icon-arrow {
+              color: $theme-header-item-color-focus;
+            }
+          }
+        }
+      }
+    }
+    // 顶栏右侧
+    .d2-header-right,.d2-header-left {
+      .tagAvatar {
+        background: $theme-button-primary-background-color;
+        color:$theme-bg-color;
+      }
+      .btn-text {
+        color: $theme-header-item-color;
+        &.can-hover {
+          &:hover {
+            color: $theme-header-item-color-hover;
+            background: $theme-header-item-background-color-hover;
+          }
+        }
+      }
+    }
+  }
+      // 侧边栏
+    .d2-theme-aside {
+      background: $theme-aside-background;
+          // 切换按钮
+    .toggle-aside-btn {
+        color: $theme-toggle-btn-color;
+        background: $theme-toggle-btn-background-color;
+        &:hover {
+          color: $theme-toggle-btn-color-hover;
+          background: $theme-toggle-btn-background-color-hover;
+        }
+    }
+      // 菜单为空的时候显示的信息
+      .d2-layout-header-aside-menu-empty {
+        background: $theme-aside-menu-empty-background-color;
+        i {
+          color: $theme-aside-menu-empty-icon-color;
+        }
+        span {
+          color: $theme-aside-menu-empty-text-color;
+        }
+        &:hover {
+          background: $theme-aside-menu-empty-background-color-hover;
+          i {
+            color: $theme-aside-menu-empty-icon-color-hover;
+          }
+          span {
+            color: $theme-aside-menu-empty-text-color-hover;
+          }
+        }
+      }
+      // [菜单] 正常状态
+      .el-menu {
+        .el-menu-item {
+          font-weight:400;
+          color: $theme-aside-item-color;
+          fill: $theme-aside-item-color;
+          background: $theme-aside-item-background-color;
+          i {
+            color: $theme-aside-item-color;
+          }
+          &:hover {
+            color: $theme-aside-item-color-hover;
+            fill: $theme-aside-item-color-hover;
+            background: $theme-aside-item-background-color-hover;
+            i {
+              color: $theme-aside-item-color-hover;
+            }
+          }
+          &:focus {
+            font-weight:800;
+            color: $theme-aside-item-color-focus;
+            fill: $theme-aside-item-color-focus;
+            background: $theme-aside-item-background-color-focus;
+            i {
+              color: $theme-aside-item-color-focus;
+            }
+          }
+          &.is-active {
+            position: relative;
+            font-weight:800;
+            color: $theme-aside-item-color-active;
+            fill: $theme-aside-item-color-active;
+            background: $theme-aside-item-background-color-active;
+            i {
+              color: $theme-aside-item-color-active;
+            }
+            &::after {
+              content:'';
+              position: absolute;
+              left: 0;
+              height: 100%;
+              width:4px;
+              background:rgba(255,255,255,1);
+              border-radius:0px 4px 4px 0px;
+            }
+          }
+        }
+      }
+      .el-submenu {
+        &.is-active {
+          .el-submenu__title {
+            font-weight:800;
+            color: $theme-aside-item-color-active;
+            fill: $theme-aside-item-color-active;
+           
+            i {
+              color: $theme-aside-item-color-active;
+            }
+          }
+          }
+        .el-submenu__title {
+          color: $theme-aside-item-color;
+          background: $theme-aside-item-background-color;
+          i {
+            color: $theme-aside-item-color;
+          }
+          .el-submenu__icon-arrow {
+            color: $theme-aside-item-color;
+          }
+          &:hover {
+            color: $theme-aside-item-color-hover;
+            background: $theme-aside-item-background-color-hover;
+            i {
+              color: $theme-aside-item-color-hover;
+            }
+            .el-submenu__icon-arrow {
+              color: $theme-aside-item-color-hover;
+            }
+          }
+        }
+      }
+    }
+  // [布局] 顶栏下面
+  .d2-theme-container {
+
+    .d2-theme-container-main {
+      // 主体部分分为多页面控制器 和主体
+      .d2-theme-container-main-header {
+        // 多页面控制器
+        .d2-multiple-page-control {
+          .el-tabs__header.is-top {
+            border-bottom-color: $theme-multiple-page-control-border-color;
+              background-color: $theme-multiple-page-control-background-color;
+
+          }
+          .el-tabs__nav {
+
+            border-color: $theme-multiple-page-control-border-color;
+            .el-tabs__item {
+              @extend %unable-select;
+              color: $theme-multiple-page-control-color;
+              border-left-color: $theme-multiple-page-control-border-color;
+              &:first-child {
+                border-left: none;
+                &:hover {
+                  padding: 0px 20px;
+                }
+              }
+            }
+            .el-tabs__item.is-active {
+              color: $theme-multiple-page-control-color-active;
+              background-color: $theme-multiple-page-control-background-color-active;
+              border-bottom-color: $theme-multiple-page-control-border-color-active;
+            }
+          }
+          %el-tabs__nav {
+            font-size: 20px;
+          }
+          .el-tabs__nav-prev {
+            @extend %el-tabs__nav;
+            color: $theme-multiple-page-control-nav-prev-color;
+          }
+          .el-tabs__nav-next {
+            @extend %el-tabs__nav;
+            color: $theme-multiple-page-control-nav-next-color;
+          }
+        }
+        // 多页控制器的关闭控制
+        .d2-multiple-page-control-btn {
+          .el-dropdown {
+            .el-button-group {
+              .el-button {
+                border-color: $theme-multiple-page-control-border-color;
+              }
+            }
+          }
+        }
+      }
+      // 主体
+      .d2-theme-container-main-body {
+        // 布局组件
+        .container-component {
+          // fix:移动到组件内部，缩小权重范围
+
+  .el-button--primary {
+    border-color: transparent;
+    background:$theme-button-primary-background-color;
+    &.is-disabled{
+      color: #FFF;    
+      background:  linear-gradient(357deg, #a0cfff 0%, #a0cfff 100%);
+      border-color: #a0cfff;
+    }
+  }
+  .el-switch__label *{
+    font-size: 12px;
+  }
+  .el-button {
+    &.svgButton span{
+      display: flex;
+      align-items: center;
+      .icon{
+        margin-right: 7px;
+      }
+    }
+    
+    padding: $theme-button-padding;
+    font-size: $theme-button-font-size;
+    border-radius: $theme-button-border-radius;
+     &.el-button--medium {
+    padding: $theme-button-medium-padding;
+    font-size: $theme-button-medium-font-size;
+    border-radius: $theme-button-medium-border-radius;
+}
+  &.el-button--small {
+    padding: $theme-button-small-padding;
+    font-size: $theme-button-small-font-size;
+    border-radius: $theme-button-small-border-radius;
+}
+  &.el-button--mini {
+    padding: $theme-button-mini-padding;
+    font-size: $theme-button-mini-font-size;
+    border-radius: $theme-button-mini-border-radius;
+}
+}
+.el-pagination.is-background .btn-next,.el-pagination.is-background .btn-prev, .el-pagination.is-background .el-pager li,
+ .el-pagination.is-background .el-input__inner{
+    min-width: 24px;
+    height: 24px;
+    line-height: 24px;
+    border:1px solid rgba(239,239,239,1);
+    border-radius:4px;
+    background-color: #fff;
+    &.active{
+    border-radius:6px;
+    background:$theme-dialog-header-background-color;
+    }
+ }
+          // [组件]
+          // d2-container-full 填充型
+          .d2-container-full {
+            
+            .d2-container-full__header {
+              border-bottom: $theme-container-border-inner;
+              background: $theme-container-header-footer-background-color;
+            }
+            .d2-container-full__body {
+              background: $theme-container-background-color;
+            }
+            .d2-container-full__footer {
+              border-top: $theme-container-border-inner;
+              background: $theme-container-header-footer-background-color;
+            }
+          }
+          // [组件]
+          // d2-container-full-bs 填充型 滚动优化
+          .d2-container-full-bs {
+            border: $theme-container-border-outer;
+            border-top: none;
+            border-bottom: none;
+            .d2-container-full-bs__header {
+              border-bottom: $theme-container-border-inner;
+              background: $theme-container-header-footer-background-color;
+            }
+            .d2-container-full-bs__body {
+              background: $theme-container-background-color;
+            }
+            .d2-container-full-bs__footer {
+              border-top: $theme-container-border-inner;
+              background: $theme-container-header-footer-background-color;
+            }
+          }
+          // [组件]
+          // d2-container-ghost 隐形布局组件
+          .d2-container-ghost {
+            .d2-container-ghost__header {
+              border-bottom: $theme-container-border-outer;
+              border-left: $theme-container-border-outer;
+              border-right: $theme-container-border-outer;
+              background: $theme-container-header-footer-background-color;
+            }
+            .d2-container-ghost__footer {
+              border-top: $theme-container-border-outer;
+              border-left: $theme-container-border-outer;
+              border-right: $theme-container-border-outer;
+              background: $theme-container-header-footer-background-color;
+            }
+          }
+          // [组件]
+          // d2-container-ghost-bs 隐形布局组件 滚动优化
+          .d2-container-ghost-bs {
+            .d2-container-ghost-bs__header {
+              border-bottom: $theme-container-border-outer;
+              border-left: $theme-container-border-outer;
+              border-right: $theme-container-border-outer;
+              background: $theme-container-header-footer-background-color;
+            }
+            .d2-container-ghost-bs__footer {
+              border-top: $theme-container-border-outer;
+              border-left: $theme-container-border-outer;
+              border-right: $theme-container-border-outer;
+              background: $theme-container-header-footer-background-color;
+            }
+          }
+          // [组件]
+          // d2-container-card 卡片型
+          .d2-container-card {
+            .d2-container-card__header {
+              border-bottom: $theme-container-border-inner;
+              border-left: $theme-container-border-outer;
+              border-right: $theme-container-border-outer;
+              background: $theme-container-header-footer-background-color;
+            }
+            .d2-container-card__body {
+              .d2-container-card__body-card {
+                background: $theme-container-background-color;
+                border-left: $theme-container-border-outer;
+                border-right: $theme-container-border-outer;
+                border-bottom: $theme-container-border-outer;
+              }
+            }
+            .d2-container-card__footer {
+              border-top: $theme-container-border-outer;
+              border-left: $theme-container-border-outer;
+              border-right: $theme-container-border-outer;
+              background: $theme-container-header-footer-background-color;
+            }
+          }
+          // [组件]
+          // d2-container-card-bs 卡片型 滚动优化
+          .d2-container-card-bs {
+            .d2-container-card-bs__header {
+              border-bottom: $theme-container-border-inner;
+              border-left: $theme-container-border-outer;
+              border-right: $theme-container-border-outer;
+              background: $theme-container-header-footer-background-color;
+            }
+            .d2-container-card-bs__body {
+              .d2-container-card-bs__body-card {
+                background: $theme-container-background-color;
+                border-left: $theme-container-border-outer;
+                border-right: $theme-container-border-outer;
+                border-bottom: $theme-container-border-outer;
+              }
+            }
+            .d2-container-card-bs__footer {
+              border-top: $theme-container-border-outer;
+              border-left: $theme-container-border-outer;
+              border-right: $theme-container-border-outer;
+              background: $theme-container-header-footer-background-color;
+            }
+          }
+        }
+      }
+    }
+  }
+}
