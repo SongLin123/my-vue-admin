@@ -165,8 +165,6 @@
 
   import setting from '@/setting.js'
 
-  import * as moment from 'moment'
-
   export default {
     name: 'd2-layout-header-aside',
     mixins: [mixinSearch],

@@ -1,10 +1,10 @@
 /*
  * @Date: 2020-05-13 14:30:24
  * @LastEditors: songlin
- * @LastEditTime: 2020-07-13 13:47:03
- * @FilePath: \senseIDC-fe\src\main.js
+ * @LastEditTime: 2020-07-17 15:38:17
+ * @FilePath: \myadmin\src\main.js
  */
-import './rem'
+// import './rem' // 需要使用px-to-rem 时开启
 
 // Vue
 import Vue from 'vue'

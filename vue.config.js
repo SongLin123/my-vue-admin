@@ -194,14 +194,23 @@ module.exports = {
       .add(resolve('src/assets/svg-icons/icons'))
       .end()
 
-    // posthtml
+    // posthtml viwport
 
     config.module
       .rule('vue')
       .test(/\.vue$/)
-      .use('htmlpx-to-rem-loader')
-      .loader(require.resolve('./htmlpx-to-rem.js'))
+      .use('htmlpx-to-viewport-loader')
+      .loader(require.resolve('./htmlpx-to-viewport.js'))
       .end()
+
+    // posthtml rem
+
+    // config.module
+    //   .rule('vue')
+    //   .test(/\.vue$/)
+    //   .use('htmlpx-to-rem-loader')
+    //   .loader(require.resolve('./htmlpx-to-rem.js'))
+    //   .end()
 
     // 重新设置 alias
     config.resolve.alias
