@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-07-24 14:37:31
  * @LastEditors: songlin
- * @LastEditTime: 2020-07-24 15:11:24
+ * @LastEditTime: 2020-07-24 16:40:29
  * @FilePath: \myadmin\dll.config.js
  */
 const path = require('path')
@@ -18,6 +18,7 @@ module.exports = {
     vuex: ['vuex'],
     ELEMENT: ['element-ui'],
     vueRouter: ['vue-router'],
+    _: ['lodash'],
     axios: ['axios'],
     myCrud: ['my-element-crud'],
     XLSX: ['xlsx']

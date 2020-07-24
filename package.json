@@ -111,7 +111,7 @@
       "vue-cli-service lint --fix",
       "git add -A"
     ],
-    "*.{html,vue,css,sass,scss}": [
+    "*.{vue,css,sass,scss}": [
       "npx stylelint --fix",
       "git add -A"
     ]

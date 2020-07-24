@@ -1,17 +1,14 @@
 /*
  * @Date: 2020-05-13 14:30:24
  * @LastEditors: songlin
- * @LastEditTime: 2020-07-13 12:23:20
- * @FilePath: \senseIDC-fe\dependencies-cdn.js
+ * @LastEditTime: 2020-07-24 16:09:06
+ * @FilePath: \myadmin\dependencies-cdn.js
  */
 module.exports = [
   // 在开发时也只能使用cdn加载的包
+  { dnsPrefetch: 'https://cdn.jsdelivr.net/', skipBuild: true },
   // { name: 'AMap.js', library: 'AMap', js: 'https://webapi.amap.com/maps?v=1.4.15', css: '', skipBuild: true },
 
-  // { name: 'element-ui', library: 'ELEMENT', js: 'https://cdn.jsdelivr.net/npm/element-ui@2.13.1/lib/index.js', css: 'https://cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/theme-chalk/index.css' },
-  // { name: 'axios-mock-adapter', library: 'AxiosMockAdapter', js: 'https://cdn.jsdelivr.net/npm/axios-mock-adapter@1.18.1/dist/axios-mock-adapter.min.js', css: '' },
-  // { name: 'STMap', library: 'stmap', js: './public/js/st-map.js', css: '', skipBuild: true },
-  { name: 'lodash', library: '_', js: 'https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js', css: '' },
   { name: 'ua-parser-js', library: 'UAParser', js: 'https://cdn.jsdelivr.net/npm/ua-parser-js@0.7.20/dist/ua-parser.min.js', css: '' },
   { name: 'js-cookie', library: 'Cookies', js: 'https://cdn.jsdelivr.net/npm/js-cookie@2.2.1/src/js.cookie.min.js', css: '' },
   { name: 'nprogress', library: 'NProgress', js: 'https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js', css: 'https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css' },

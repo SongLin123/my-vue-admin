@@ -1,3 +1,10 @@
+## 更新内容
+* 优化打包
+    1. 增加了 dnsPrefetch 标签在 cdn 中
+    2. 增加 DllPlugin 预构建功能
+    3. 增加 BundleAnalyzerPlugin 分析打包后文件
+    4. 增加 terser 进行代码压缩
+
 ## ps ：关于css单位转换的
     目前主流方案的思路大多是根据视口的宽度或者高度来调节单位，或者转换为rem或者转换为viewport单位。
     这里提供了两种方案，
@@ -14,6 +21,24 @@
 
 
 # 项目介绍
+
+基于 vue2.0+ vue-cli3 的项目脚手架。
+优化了一些工程化功能
+
+## 使用
+
+### 初始化
+```
+npm i
+```
+### npm命令
+```
+npm run build // 构建
+npm run lint // eslint fix模式
+npm run api-codegen // 根据 config.json 生成api代码
+npm run analyz // 预构建，查看分包分析
+npm run dll // 使用 DllPlugin 将库预构建
+```
 
 ## 功能
 

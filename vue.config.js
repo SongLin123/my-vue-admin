@@ -30,17 +30,19 @@ const publicPath = process.env.VUE_APP_PUBLIC_PATH || '/'
 const externals = {}
 
 cdnDependencies.forEach(pkg => {
-  externals[pkg.name] = pkg.library
+  pkg.name && (externals[pkg.name] = pkg.library)
 })
 
 // 引入文件的 cdn 链接
 const cdn = {
-  css: cdnDependencies.map(e => e.css).filter(e => e),
-  js: cdnDependencies.map(e => e.js).filter(e => e)
+  dnsPrefetch: cdnDependencies.map(e => e.dnsPrefetch || '').filter(e => e),
+  css: cdnDependencies.map(e => e.css || '').filter(e => e),
+  js: cdnDependencies.map(e => e.js || '').filter(e => e)
 }
 
 // 设置必须使用cdn加载的包
 const alwaysUseCdn = {
+  dnsPrefetch: cdnDependencies.map(e => e.skipBuild ? e.dnsPrefetch : '').filter(e => e),
   css: cdnDependencies.map(e => e.skipBuild ? e.css : '').filter(e => e),
   js: cdnDependencies.map(e => e.skipBuild ? e.js : '').filter(e => e)
 }
@@ -68,15 +70,15 @@ module.exports = {
     publicPath, // 和 publicPath 保持一致
     disableHostCheck: true // 关闭 host check，方便使用 ngrok 之类的内网转发工具
     // proxy: {
-      // '/idc-api': {
-      //   target: 'http://10.151.5.96/',
-      //   changeOrigin: true
-      // },
-      // '/idc-images': {
-      //   target: 'http://10.151.5.96/intersense/',
-      //   changeOrigin: true,
-      //   pathRewrite: { '^/idc-images': '/' }
-      // }
+    // '/idc-api': {
+    //   target: 'http://10.151.5.96/',
+    //   changeOrigin: true
+    // },
+    // '/idc-images': {
+    //   target: 'http://10.151.5.96/intersense/',
+    //   changeOrigin: true,
+    //   pathRewrite: { '^/idc-images': '/' }
+    // }
     // }
   },
   css: {
@@ -122,6 +124,8 @@ module.exports = {
         })
       )
     }
+
+    // 扫描文件目录，把目录内的文件加入html模板
     const { dllDir } = require('./package.json')
     const DIR = path.resolve(__dirname, dllDir)
     if (fs.existsSync(DIR)) {
@@ -185,14 +189,23 @@ module.exports = {
         externalCssFiles: ['./node_modules/element-ui/lib/theme-chalk/index.css'], // optional, String or string array. Set external css files (such as cdn css) to extract colors.
         changeSelector: forElementUI.changeSelector
       }])
+
     config
       // 开发环境 sourcemap 不包含列信息
       .when(process.env.NODE_ENV === 'development',
         config => config.devtool('source-map')
       )
-      .when(process.env.NODE_ENV !== 'development',
-        config => config.devtool('cheap-source-map')
-      )
+    if (process.env.NODE_ENV !== 'development') {
+      config.optimization.minimizer('terser').tap(args => {
+        // 生产环境推荐关闭 sourcemap 防止源码泄漏
+        // 服务端通过前端发送的行列，根据 sourcemap 转为源文件位置
+        args[0].sourceMap = false
+        args[0].terserOptions.warnings = false
+        args[0].terserOptions.compress.drop_console = true
+        args[0].terserOptions.compress.drop_debugger = true
+        return args
+      })
+    }
 
     // svg
     const svgRule = config.module.rule('svg')
