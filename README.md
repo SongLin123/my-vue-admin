@@ -4,6 +4,8 @@
     2. 增加 DllPlugin 预构建功能
     3. 增加 BundleAnalyzerPlugin 分析打包后文件
     4. 增加 terser 进行代码压缩
+    
+* 增加了 stylelint
 
 ## ps ：关于css单位转换的
     目前主流方案的思路大多是根据视口的宽度或者高度来调节单位，或者转换为rem或者转换为viewport单位。
@@ -35,6 +37,7 @@ npm i
 ```
 npm run build // 构建
 npm run lint // eslint fix模式
+npm run styleLint // stylelint fix模式
 npm run api-codegen // 根据 config.json 生成api代码
 npm run analyz // 预构建，查看分包分析
 npm run dll // 使用 DllPlugin 将库预构建
@@ -43,6 +46,8 @@ npm run dll // 使用 DllPlugin 将库预构建
 ## 功能
 
 * 使用 vue-cli3 构建
+* eslint
+* stylelint
 * 全屏
 * 全局灰度模式
 * 自动注册 SVG 图标
@@ -55,6 +60,11 @@ npm run dll // 使用 DllPlugin 将库预构建
 * 切换全局基础组件尺寸 
 * 页面载入进度条 
 * 自适应css单位（提供了rem和viewport两种单位的转换方案，兼容html内联样式）
+* 打包分析
+* terser 代码压缩
+* 配置化 DllPlugin
+* 配置化 cdn
+* sentry 线上日志收集
 
 
 ## 项目结构
