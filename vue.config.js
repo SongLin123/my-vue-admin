@@ -1,9 +1,8 @@
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
-// const VueFilenameInjector = require('@d2-projects/vue-filename-injector')
 const ThemeColorReplacer = require('webpack-theme-color-replacer')
 const forElementUI = require('webpack-theme-color-replacer/forElementUI')
 const cdnDependencies = require('./dependencies-cdn')
-
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const StyleLintPlugin = require('stylelint-webpack-plugin')
 const { chain, set, each } = require('lodash')
 
@@ -59,26 +58,6 @@ module.exports = {
     publicPath, // 和 publicPath 保持一致
     disableHostCheck: true, // 关闭 host check，方便使用 ngrok 之类的内网转发工具
     proxy: {
-      // '/security-api/security-attendance': {
-      //   target: 'http://192.168.0.240:10105/',
-      //   changeOrigin: true,
-      //   pathRewrite: { '^/security-api/security-attendance': '/' }
-      // },
-      // '/security-api/idc-system': {
-      //   target: 'http://10.151.5.96/',
-      //   changeOrigin: true,
-      //   pathRewrite: { '^/security-api/idc-system': '/idc-system' }
-      // },
-      // '/idc-api/senseidc-basic': {
-      //   target: 'http://10.151.5.96/',
-      //   changeOrigin: true,
-      //   pathRewrite: { '^/idc-api/senseidc-basic': '/idc-basic' }
-      // },
-      // '/idc-api/idc-system': {
-      //   target: 'http://10.151.5.96/',
-      //   changeOrigin: true,
-      //   pathRewrite: { '^/idc-api/idc-system': '/idc-system' }
-      // },
       '/idc-api': {
         target: 'http://10.151.5.96/',
         changeOrigin: true
@@ -101,7 +80,8 @@ module.exports = {
   pages,
   configureWebpack: config => {
     const configNew = {
-      externals: {}
+      externals: {},
+      plugins: []
     }
     if (process.env.NODE_ENV === 'production') {
       configNew.externals = externals
@@ -116,10 +96,19 @@ module.exports = {
         })
       ]
     } else {
-      config.plugins.push( // eslint-disable-line
+      configNew.plugins.push( // eslint-disable-line
         new StyleLintPlugin({
           context: 'src',
           files: ['**/*.less', '**/*.s?(a|c)ss', '**/*.vue']
+        })
+      )
+    }
+
+    if (process.env.ANALYZ === 'true') {
+      configNew.plugins.push(
+        new BundleAnalyzerPlugin({
+          analyzerMode: 'server', // 启动展示打包报告的http服务器
+          generateStatsFile: false // 是否生成stats.json文件
         })
       )
     }
@@ -215,12 +204,6 @@ module.exports = {
     // 重新设置 alias
     config.resolve.alias
       .set('@api', resolve('src/api'))
-    // 分析工具
-    if (process.env.npm_config_report) {
-      config
-        .plugin('webpack-bundle-analyzer')
-        .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin)
-    }
   },
   // 不输出 map 文件
   productionSourceMap: false,

@@ -1,12 +1,13 @@
 {
-  "name": "senseIDC-fe",
+  "name": "my-vue-admin",
   "version": "0.0.1",
   "scripts": {
     "serve": "vue-cli-service serve --open",
     "start": "npm run serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint --fix",
-    "api-codegen": "api-codegen ./config.json"
+    "api-codegen": "api-codegen ./config.json",
+    "analyz":"vue-cli-service build --mode preview"
   },
   "dependencies": {
     "@sentry/browser": "^5.17.0",
