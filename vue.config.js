@@ -2,8 +2,18 @@ const CompressionWebpackPlugin = require('compression-webpack-plugin')
 const ThemeColorReplacer = require('webpack-theme-color-replacer')
 const forElementUI = require('webpack-theme-color-replacer/forElementUI')
 const cdnDependencies = require('./dependencies-cdn')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+
 const StyleLintPlugin = require('stylelint-webpack-plugin')
+
+// 分析工具
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+
+// dllPlugin
+const fs = require('fs')
+const path = require('path')
+const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin') // 给 index.html 注入 dll 生成的链接库
+const { DllReferencePlugin } = require('webpack')
+
 const { chain, set, each } = require('lodash')
 
 // 拼接路径
@@ -56,18 +66,18 @@ module.exports = {
   lintOnSave: true,
   devServer: {
     publicPath, // 和 publicPath 保持一致
-    disableHostCheck: true, // 关闭 host check，方便使用 ngrok 之类的内网转发工具
-    proxy: {
-      '/idc-api': {
-        target: 'http://10.151.5.96/',
-        changeOrigin: true
-      },
-      '/idc-images': {
-        target: 'http://10.151.5.96/intersense/',
-        changeOrigin: true,
-        pathRewrite: { '^/idc-images': '/' }
-      }
-    }
+    disableHostCheck: true // 关闭 host check，方便使用 ngrok 之类的内网转发工具
+    // proxy: {
+      // '/idc-api': {
+      //   target: 'http://10.151.5.96/',
+      //   changeOrigin: true
+      // },
+      // '/idc-images': {
+      //   target: 'http://10.151.5.96/intersense/',
+      //   changeOrigin: true,
+      //   pathRewrite: { '^/idc-images': '/' }
+      // }
+    // }
   },
   css: {
     loaderOptions: {
@@ -111,6 +121,28 @@ module.exports = {
           generateStatsFile: false // 是否生成stats.json文件
         })
       )
+    }
+    const { dllDir } = require('./package.json')
+    const DIR = path.resolve(__dirname, dllDir)
+    if (fs.existsSync(DIR)) {
+      fs.readdirSync(DIR).forEach(file => {
+        if (/.*\.dll\.js$/.test(file)) {
+          configNew.plugins.push(
+            new AddAssetHtmlWebpackPlugin({
+              filepath: path.resolve(DIR, file),
+              outputPath: 'js', // 输出路径，相对于默认的输出路径（dist）
+              publicPath: 'js' // 引入文件路径
+            })
+          )
+        }
+        if (/.*\.manifest.json/.test(file)) {
+          configNew.plugins.push(
+            new DllReferencePlugin({
+              manifest: path.resolve(DIR, file)
+            })
+          )
+        }
+      })
     }
     return configNew
   },

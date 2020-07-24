@@ -1,12 +1,13 @@
 /*
  * @Date: 2020-07-24 14:37:31
  * @LastEditors: songlin
- * @LastEditTime: 2020-07-24 14:44:27
+ * @LastEditTime: 2020-07-24 15:11:24
  * @FilePath: \myadmin\dll.config.js
  */
 const path = require('path')
 const TerserWebpackPlugin = require('terser-webpack-plugin')
-const { DllPlugin } = require('webpack') // 由于 vue-cli 内置了 webpack 所以不需要在 package.json 中声明
+const { DllPlugin } = require('webpack')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const { dllDir } = require('./package.json')
 const DIR = path.resolve(__dirname, dllDir)
 module.exports = {
@@ -17,7 +18,9 @@ module.exports = {
     vuex: ['vuex'],
     ELEMENT: ['element-ui'],
     vueRouter: ['vue-router'],
-    axios: ['axios']
+    axios: ['axios'],
+    myCrud: ['my-element-crud'],
+    XLSX: ['xlsx']
   },
   output: {
     path: DIR,
@@ -42,6 +45,7 @@ module.exports = {
   },
 
   plugins: [
+    new CleanWebpackPlugin(),
     new DllPlugin({
       // 必须和全局变量即library名字相同，否则DllPlugin插件找不到第三方库
       name: '[name]',
