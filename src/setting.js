@@ -1,8 +1,8 @@
 /*
  * @Date: 2020-05-13 14:30:24
  * @LastEditors: songlin
- * @LastEditTime: 2020-07-13 15:31:25
- * @FilePath: \senseIDC-fe\src\setting.js
+ * @LastEditTime: 2020-07-26 22:57:40
+ * @FilePath: \myadmin\src\setting.js
  */
 export default {
   // 快捷键
@@ -24,15 +24,9 @@ export default {
   },
   // 在读取持久化数据失败时默认页面
   page: {
-    opened: [
-      {
-        name: 'index',
-        fullPath: 'index',
-        meta: {
-          title: '首页'
-        }
-      }
-    ]
+
+    name: 'upload'
+
   },
   // 菜单搜索
   search: {

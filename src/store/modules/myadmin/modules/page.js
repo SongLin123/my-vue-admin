@@ -42,7 +42,7 @@ export default {
       const value = await dispatch('myadmin/db/get', {
         dbName: 'sys',
         path: 'page.opened',
-        defaultValue: setting.page.opened,
+        defaultValue: [setting.page],
         user: true
       }, { root: true })
       // 在处理函数中进行数据优化 过滤掉现在已经失效的页签或者已经改变了信息的页签

@@ -93,7 +93,6 @@
 </template>
 
 <script>
-  import setting from '@/setting.js'
   import { mapActions, mapState } from 'vuex'
   export default {
     computed: {
@@ -188,7 +187,7 @@
               .then(() => {
                 this.dbSet({ path: 'setUse', value: this.formLogin.username })
                 // 重定向对象不存在则跳转默认
-                this.$router.replace(this.$route.query.redirect || setting.page.opened[0].fullPath)
+                this.$router.replace(this.$route.query.redirect)
               })
               .then(() => {
                 if (this.setPsd) {

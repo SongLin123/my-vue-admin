@@ -68,18 +68,19 @@ module.exports = {
   lintOnSave: true,
   devServer: {
     publicPath, // 和 publicPath 保持一致
-    disableHostCheck: true // 关闭 host check，方便使用 ngrok 之类的内网转发工具
-    // proxy: {
-    // '/idc-api': {
-    //   target: 'http://10.151.5.96/',
-    //   changeOrigin: true
-    // },
-    // '/idc-images': {
-    //   target: 'http://10.151.5.96/intersense/',
-    //   changeOrigin: true,
-    //   pathRewrite: { '^/idc-images': '/' }
-    // }
-    // }
+    disableHostCheck: true, // 关闭 host check，方便使用 ngrok 之类的内网转发工具
+    proxy: {
+      '/idc-api/idc-utility/file': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        pathRewrite: { '^/idc-api/idc-utility/file': '/' }
+      }
+      // '/idc-images': {
+      //   target: 'http://10.151.5.96/intersense/',
+      //   changeOrigin: true,
+      //   pathRewrite: { '^/idc-images': '/' }
+      // }
+    }
   },
   css: {
     loaderOptions: {

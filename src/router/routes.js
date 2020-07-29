@@ -1,11 +1,12 @@
 /*
  * @Date: 2020-05-13 14:30:24
  * @LastEditors: songlin
- * @LastEditTime: 2020-07-13 13:55:13
- * @FilePath: \senseIDC-fe\src\router\routes.js
+ * @LastEditTime: 2020-07-26 22:57:19
+ * @FilePath: \myadmin\src\router\routes.js
  */
 
 import layoutHeaderAside from '@/layout/header-aside'
+import setting from '@/setting.js'
 
 // 由于懒加载页面太多的话会造成webpack热更新太慢，所以开发环境不使用懒加载，只有生产环境使用懒加载
 const _import = require('@/libs/util.import.' + process.env.NODE_ENV)
@@ -47,7 +48,7 @@ children = children.concat(...files.keys().map(key => files(key).default))
 const frameIn = [
   {
     path: '/',
-    redirect: { name: 'index' },
+    redirect: { name: setting.page.name },
     component: layoutHeaderAside,
     children
   }

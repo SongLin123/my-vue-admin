@@ -1,8 +1,8 @@
 /*
  * @Date: 2020-05-13 14:30:24
  * @LastEditors: songlin
- * @LastEditTime: 2020-07-13 17:45:05
- * @FilePath: \senseIDC-fe\src\router\index.js
+ * @LastEditTime: 2020-07-26 23:00:06
+ * @FilePath: \myadmin\src\router\index.js
  */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
@@ -22,7 +22,7 @@ import routes, { frameInRoutes } from './routes'
 // 权限路由映射表处理
 import { formatRoutes, formatMenus } from './routerComponentMap'
 // 首页
-const indexPath = setting.page.opened[0]
+const indexPath = setting.page.name
 
 // fix vue-router NavigationDuplicated
 const VueRouterPush = VueRouter.prototype.push
@@ -38,6 +38,7 @@ Vue.use(VueRouter)
 
 // 导出路由 在 main.js 里使用
 const router = new VueRouter({
+  mode: 'history',
   routes
 })
 
