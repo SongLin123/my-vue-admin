@@ -13,6 +13,8 @@ const fs = require('fs')
 const path = require('path')
 const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin') // 给 index.html 注入 dll 生成的链接库
 const { DllReferencePlugin } = require('webpack')
+// tree shaking
+const WebpackDeepScopeAnalysisPlugin = require('webpack-deep-scope-plugin').default
 
 const { chain, set, each } = require('lodash')
 
@@ -117,6 +119,14 @@ module.exports = {
       )
     }
 
+    /**
+     * webpack 作用域分析消除无用代码
+     * https://diverse.space/2018/05/better-tree-shaking-with-scope-analysis
+     */
+    configNew.plugins.push( // eslint-disable-line
+      new WebpackDeepScopeAnalysisPlugin()
+    )
+
     if (process.env.ANALYZ === 'true') {
       configNew.plugins.push(
         new BundleAnalyzerPlugin({
@@ -197,6 +207,7 @@ module.exports = {
         config => config.devtool('source-map')
       )
     if (process.env.NODE_ENV !== 'development') {
+      // 代码压缩
       config.optimization.minimizer('terser').tap(args => {
         // 生产环境推荐关闭 sourcemap 防止源码泄漏
         // 服务端通过前端发送的行列，根据 sourcemap 转为源文件位置
@@ -231,21 +242,21 @@ module.exports = {
 
     // posthtml viwport
 
-    config.module
-      .rule('vue')
-      .test(/\.vue$/)
-      .use('htmlpx-to-viewport-loader')
-      .loader(require.resolve('./htmlpx-to-viewport.js'))
-      .end()
-
-    // posthtml rem
-
     // config.module
     //   .rule('vue')
     //   .test(/\.vue$/)
-    //   .use('htmlpx-to-rem-loader')
-    //   .loader(require.resolve('./htmlpx-to-rem.js'))
+    //   .use('htmlpx-to-viewport-loader')
+    //   .loader(require.resolve('./htmlpx-to-viewport.js'))
     //   .end()
+
+    // posthtml rem
+
+    config.module
+      .rule('vue')
+      .test(/\.vue$/)
+      .use('htmlpx-to-rem-loader')
+      .loader(require.resolve('./htmlpx-to-rem.js'))
+      .end()
 
     // 重新设置 alias
     config.resolve.alias

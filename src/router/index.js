@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-05-13 14:30:24
  * @LastEditors: songlin
- * @LastEditTime: 2020-07-26 23:00:06
+ * @LastEditTime: 2020-08-11 18:21:59
  * @FilePath: \myadmin\src\router\index.js
  */
 import Vue from 'vue'

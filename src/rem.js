@@ -1,8 +1,8 @@
 /*
  * @Date: 2020-06-30 10:18:32
  * @LastEditors: songlin
- * @LastEditTime: 2020-06-30 10:20:11
- * @FilePath: \senseIDC-fe\src\rem.js
+ * @LastEditTime: 2020-08-05 15:06:00
+ * @FilePath: \myadmin\src\rem.js
  */
 const baseSize = 16
 // 设置 rem 函数

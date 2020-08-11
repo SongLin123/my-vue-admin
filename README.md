@@ -8,14 +8,24 @@
 * 增加了 stylelint
 
 ## ps ：关于css单位转换的
-    目前主流方案的思路大多是根据视口的宽度或者高度来调节单位，或者转换为rem或者转换为viewport单位。
+    目前主流方案的思路大多是根据视口的宽度或者高度来调节单位，或者转换为em(rem)或者转换为viewport单位。
     这里提供了两种方案，
-    1. vw方案，使用postcss-px-to-vw + webpack-html-to-vw,
-    2. rem方案，使用postcss-px-to-rem + webpack-html-to-rem + 监听视口宽度调整rem数值
+    1. vw方案，使用postcss-px-to-vw + htmlpx-to-viewport,单位使用viewport单位,
+    2. em方案，使用postcss-px-to-rem + htmlpx-to-rem + 设置em或rem的根font-size , 单位使用rem 或 em 单位
 
-    其实实现出来的效果是类似的，
-    vw的方案更直观，方案也更成熟，但是viewport单位的兼容性可能会产生一些问题。
-    rem的方案，在面对某些无法转换单位的情况时，如css-in-js的时候计算rem会更加简单一些（vw也需要算）。还可以通过调整rem的 root 单位实现大部分元素的放大变小。
+其实实现出来的效果是类似的，
+* vw的方案更直观，直接根据目标尺寸将 px 转换为 viewport 单位
+* rem的方案，实现效果与viewport类似，在面对某些无法转换单位的情况时，如微前端的子应用不能使用 viewport 单位。还可以通过调整rem的 root 单位实现大部分元素的放大变小。
+
+但是都个有问题：
+* viewport 
+    1. 单位的兼容性可能会产生一些问题，可能不兼容老式浏览器
+    2. viewport 单位是根据浏览器的视口确定的，不能够自定义。
+    > 例如，在兼容微前端的的子应用场景下,子应用如果使用viewport单位，除非子应用在开发时就按照基座视口的尺寸来确定css尺寸，否则在嵌入基座应用时单位会按照浏览器视口来计算，这样可能就无法良好的放置到基座提供的视口中。
+* em（rem）
+    1. 需要自行指定根的font-size大小
+    2. 指定基础尺寸需要在js运行时执行，可能会导致页面重排，导致页面抖动
+    2. 计算中的浮点数可能丢失一些精度
 
     各有利弊，根据需要取舍。
 

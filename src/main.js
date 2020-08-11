@@ -1,10 +1,10 @@
 /*
  * @Date: 2020-05-13 14:30:24
  * @LastEditors: songlin
- * @LastEditTime: 2020-07-17 15:38:17
+ * @LastEditTime: 2020-08-05 14:45:28
  * @FilePath: \myadmin\src\main.js
  */
-// import './rem' // 需要使用px-to-rem 时开启
+import './rem' // 需要使用px-to-rem 时开启
 
 // Vue
 import Vue from 'vue'

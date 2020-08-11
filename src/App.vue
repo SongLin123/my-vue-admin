@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-05-13 14:30:24
  * @LastEditors: songlin
- * @LastEditTime: 2020-07-24 17:02:47
+ * @LastEditTime: 2020-08-05 14:55:17
  * @FilePath: \myadmin\src\App.vue
  -->
 <template>
@@ -19,5 +19,4 @@ export default {
 <style lang="scss">
 @import '~@/assets/style/public-class.scss';
 @import '~@/assets/iconfont/iconfont.css';
-
 </style>

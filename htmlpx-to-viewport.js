@@ -1,8 +1,8 @@
 /*
  * @Date: 2020-06-30 12:16:23
  * @LastEditors: songlin
- * @LastEditTime: 2020-07-17 15:32:21
- * @FilePath: \myadmin\htmlpx-to-viewport.js
+ * @LastEditTime: 2020-08-05 15:05:11
+ * @FilePath: \myadmin\htmlpx-to-unit.js
  */
 const loaderUtils = require('loader-utils')
 // 默认参数
@@ -11,7 +11,7 @@ const defaultsProp = {
   viewportWidth: 1920,
   unitPrecision: 6,
   // propList: ['*'],// TODO
-  viewportUnit: 'vw',
+  viewportUnit: 'vw', // vh,vmax,vmin
   minPixelValue: 0
   // landscapeUnit: 'vw', // TODO
   // landscapeWidth: 568 // TODO
