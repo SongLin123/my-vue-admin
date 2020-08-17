@@ -104,7 +104,7 @@
 </template>
 <script>
   import selectTree from './selectTree'
-  import util from '@/libs/util'
+  import * as util from '@/libs/util'
   import { mapState, mapActions } from 'vuex'
   import { isEmpty } from 'lodash'
   export default {

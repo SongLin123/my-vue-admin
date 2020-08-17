@@ -1,29 +1,22 @@
 /*
  * @Date: 2020-05-13 14:30:24
  * @LastEditors: songlin
- * @LastEditTime: 2020-07-13 15:41:01
- * @FilePath: \senseIDC-fe\src\libs\util.js
+ * @LastEditTime: 2020-08-17 10:49:38
+ * @FilePath: \myadmin\src\libs\util.js
  */
-import cookies from './util.cookies'
-import db from './util.db'
-import log from './util.log'
-import WS from './util.ws'
-import * as fileDownload from 'js-file-download'
 import { cloneDeep } from 'lodash'
+import * as downloadFile from 'js-file-download'
 
-const util = {
-  cookies,
-  db,
-  log,
-  WS,
-  downloadFile: fileDownload
-}
-
+export { default as cookies } from './util.cookies'
+export { default as db } from './util.db'
+export { default as log } from './util.log'
+export { default as WS } from './util.ws'
+export { downloadFile }
 /**
  * @description 更新标题
  * @param {String} title 标题
  */
-util.title = function (titleText) {
+export const title = function (titleText) {
   const processTitle = process.env.VUE_APP_TITLE
   window.document.title = `${processTitle}${titleText ? ` | ${titleText}` : ''}`
 }
@@ -32,7 +25,7 @@ util.title = function (titleText) {
  * @description 打开新页面
  * @param {String} url 地址
  */
-util.open = function (url) {
+export const open = function (url) {
   var a = document.createElement('a')
   a.setAttribute('href', url)
   a.setAttribute('target', '_blank')
@@ -46,7 +39,7 @@ util.open = function (url) {
  * @description 拍平api返回的菜单
  * @param {String}
  */
-const flatMenu = (routeArr) => {
+export const flatMenu = (routeArr) => {
   let arr = []
   for (const item of routeArr) {
     arr.push(item)
@@ -56,12 +49,11 @@ const flatMenu = (routeArr) => {
   }
   return arr
 }
-util.flatMenu = flatMenu
 
 /**
  * @description: 一维数组构建树结构
  */
-util.makeTree = function makeTree(arr, groupName = undefined) {
+export const makeTree = function makeTree(arr, groupName = undefined) {
   // fix root
   // arr.push({
   //   uuid: '-1',
@@ -102,19 +94,35 @@ util.makeTree = function makeTree(arr, groupName = undefined) {
   return recursive(v)
 }
 
-util.decorator = function (obj) {
+export const decorator = function (obj) {
   const tar = { ...obj }
-  return Object.defineProperty(tar, 'reset', {
-    enumerable: false,
-    configurable: false,
-    value: () => {
-      for (const key in obj) {
-        // eslint-disable-next-line no-prototype-builtins
-        if (obj.hasOwnProperty(key)) {
-          tar[key] = obj[key]
+
+  return new Proxy(tar, {
+    get(target, p) {
+      if (p === 'reset') {
+        return () => {
+          for (const key in obj) {
+            // eslint-disable-next-line no-prototype-builtins
+            if (obj.hasOwnProperty(key)) {
+              target[key] = obj[key]
+            }
+          }
         }
+      } else {
+        return target[p]
       }
     }
   })
+  // return Object.defineProperty(tar, 'reset', {
+  //   enumerable: false,
+  //   configurable: false,
+  //   value: () => {
+  //     for (const key in obj) {
+  //       // eslint-disable-next-line no-prototype-builtins
+  //       if (obj.hasOwnProperty(key)) {
+  //         tar[key] = obj[key]
+  //       }
+  //     }
+  //   }
+  // })
 }
-export default util

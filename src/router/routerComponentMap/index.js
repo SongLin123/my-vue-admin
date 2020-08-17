@@ -5,7 +5,7 @@
  * @FilePath: \senseIDC-fe\src\router\routerComponentMap\index.js
  */
 
-import util from '@/libs/util'
+import * as util from '@/libs/util'
 import { isEmpty, pickBy } from 'lodash'
 const files = require.context('./', false, /\.js$/)
 

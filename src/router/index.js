@@ -12,7 +12,7 @@ import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
 import store from '@/store/index'
-import util from '@/libs/util.js'
+import * as util from '@/libs/util.js'
 
 // 菜单和路由设置
 import setting from '@/setting.js'

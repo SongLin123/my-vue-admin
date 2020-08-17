@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-05-13 14:30:24
  * @LastEditors: songlin
- * @LastEditTime: 2020-08-05 14:45:28
+ * @LastEditTime: 2020-08-16 22:26:17
  * @FilePath: \myadmin\src\main.js
  */
 import './rem' // 需要使用px-to-rem 时开启
@@ -17,7 +17,7 @@ import store from '@/store/index'
 
 import router from './router'
 import global from '@/mixins/global'
-import util from '@/libs/util'
+import * as util from '@/libs/util'
 
 // 核心插件,为permission插件传入store
 Vue.use(allPlugin, { store })

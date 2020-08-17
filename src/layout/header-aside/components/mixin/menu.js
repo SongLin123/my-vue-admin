@@ -4,7 +4,7 @@
  * @LastEditTime: 2020-05-18 16:37:41
  * @FilePath: \d2-admin\src\layout\header-aside\components\mixin\menu.js
  */
-import util from '@/libs/util.js'
+import * as util from '@/libs/util.js'
 
 export default {
   methods: {

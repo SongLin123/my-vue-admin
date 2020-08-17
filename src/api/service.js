@@ -2,7 +2,7 @@ import axios from 'axios'
 import { Message } from 'element-ui'
 import router from '@/router/index'
 import { get, isNull, isUndefined } from 'lodash'
-import util from '@/libs/util'
+import * as util from '@/libs/util'
 import store from '@/store'
 import Adapter from 'axios-mock-adapter'
 

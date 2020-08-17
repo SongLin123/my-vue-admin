@@ -13,7 +13,7 @@
   </div>
 </template>
 <script>
-  import util from '@/libs/util'
+  import * as util from '@/libs/util'
   import { find } from 'lodash'
   export default {
     props: {
