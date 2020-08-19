@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-07-24 14:37:31
  * @LastEditors: songlin
- * @LastEditTime: 2020-08-05 15:36:00
+ * @LastEditTime: 2020-08-19 18:13:33
  * @FilePath: \myadmin\dll.config.js
  */
 const path = require('path')
@@ -18,10 +18,10 @@ module.exports = {
   mode: 'production',
   devtool: 'source-map',
   entry: {
-    vue: ['vue'],
-    vuex: ['vuex'],
-    ELEMENT: ['element-ui'],
-    vueRouter: ['vue-router'],
+    // vue: ['vue'],
+    // vuex: ['vuex'],
+    // ELEMENT: ['element-ui'],
+    // vueRouter: ['vue-router'],
     _: ['lodash'],
     axios: ['axios'],
     myCrud: ['my-element-crud'],
